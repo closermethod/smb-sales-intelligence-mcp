@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMB Sales Intelligence | MCP Server for AI Agents</title>
+    <meta name="description" content="Enterprise-grade sales playbooks for AI SDRs. Objection handling, discovery scripts, EMEA intelligence. By Elisabeth Hitz (268% quota at Criteo).">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --white: #fafafa;
+            --green: #00ff88;
+            --green-dark: #00cc6a;
+            --gray: #666;
+            --gray-light: #1a1a1a;
+            --gray-border: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Navigation */
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--white);
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--gray-light);
+            border: 1px solid var(--gray-border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            margin-bottom: 32px;
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .badge span {
+            color: var(--green);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        
+        h1 .highlight {
+            color: var(--green);
+        }
+        
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--green);
+            color: var(--black);
+        }
+        
+        .btn-primary:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--gray-border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--white);
+        }
+        
+        /* Stats */
+        .stats {
+            padding: 80px 0;
+            border-top: 1px solid var(--gray-border);
+            border-bottom: 1px solid var(--gray-border);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--green);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .section-sub {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        
+        .problem-card {
+            background: var(--gray-light);
+            border: 1px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+        
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        
+        .problem-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Tools Section */
+        .tools {
+            padding: 100px 0;
+            background: var(--gray-light);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .tool-card {
+            background: var(--black);
+            border: 1px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.2s;
+        }
+        
+        .tool-card:hover {
+            border-color: var(--green);
+        }
+        
+        .tool-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+        
+        .tool-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Code Example */
+        .code-section {
+            padding: 100px 0;
+        }
+        
+        .code-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        
+        .code-block {
+            background: var(--gray-light);
+            border: 1px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 24px;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+        
+        .code-block .keyword {
+            color: var(--green);
+        }
+        
+        .code-block .string {
+            color: #ff9f43;
+        }
+        
+        .code-text h3 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+        
+        .code-text p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: var(--gray-light);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        .price-card {
+            background: var(--black);
+            border: 1px solid var(--gray-border);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .price-card.popular {
+            border-color: var(--green);
+            position: relative;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green);
+            color: var(--black);
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .price-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .price-amount {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+        
+        .price-period {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+        
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        
+        .price-features li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+            border-bottom: 1px solid var(--gray-border);
+        }
+        
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Credentials */
+        .credentials {
+            padding: 100px 0;
+        }
+        
+        .credentials-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+        
+        .credential-list {
+            list-style: none;
+        }
+        
+        .credential-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .credential-check {
+            color: var(--green);
+            font-size: 1.25rem;
+        }
+        
+        .credential-text {
+            font-size: 1.1rem;
+        }
+        
+        .credential-text span {
+            color: var(--gray);
+            font-size: 0.9rem;
+            display: block;
+        }
+        
+        /* CTA */
+        .final-cta {
+            padding: 120px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--gray-light) 0%, var(--black) 100%);
+        }
+        
+        .final-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .final-cta p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--gray-border);
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-copy {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .problem-grid,
+            .tools-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-container,
+            .credentials-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SMB_SALES_MCP</div>
+            <div class="nav-links">
+                <a href="#tools">Tools</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="https://github.com/elibierhitz/smb-sales-mcp">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">MCP Server <span>v2.0</span></div>
+            <h1>Your AI agent can't sell.<br><span class="highlight">This fixes that.</span></h1>
+            <p class="hero-sub">Enterprise-grade sales playbooks for AI SDRs. Objection handling, discovery scripts, EMEA intelligence — all battle-tested at Criteo, Deel, HBO.</p>
+            <div class="cta-group">
+                <a href="https://apify.com/elibierhitz/smb-sales-mcp" class="btn btn-primary">Get Started Free →</a>
+                <a href="#tools" class="btn btn-secondary">See All Tools</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">268%</div>
+                    <div class="stat-label">Quota at Criteo</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$12B</div>
+                    <div class="stat-label">Deel Revenue</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Enterprise Sales</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">EMEA Markets</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Problem</div>
+                <h2>AI SDRs Are Failing</h2>
+                <p class="section-sub">Most AI agents use generic playbooks that don't work in real sales conversations.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>No Qualification</h3>
+                    <p>They pitch before asking questions. Real sales starts with discovery.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤖</div>
+                    <h3>Generic Responses</h3>
+                    <p>"I understand your concern" doesn't handle objections. Specific scripts do.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👻</div>
+                    <h3>Bad Follow-Ups</h3>
+                    <p>"Just checking in" is lazy. Day 5 value-adds reopen 30-40% of dead conversations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="tools" id="tools">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">MCP Tools</div>
+                <h2>10 Tools That Close Deals</h2>
+                <p class="section-sub">Every tool is based on real playbooks that generated millions in enterprise revenue.</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-name">get_discovery_script</div>
+                    <div class="tool-desc">5 discovery scripts for different contexts. Professional, warm, DM, cold outbound, inbound lead.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_objection_response</div>
+                    <div class="tool-desc">Handle 10 common objections with psychology-backed responses. Price, budget, timing, competition, ghosting.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_followup_sequence</div>
+                    <div class="tool-desc">4 follow-up sequences: post-proposal, post-call, cold outbound, revival. Day-by-day templates.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_closing_script</div>
+                    <div class="tool-desc">7 closing styles: standard, assumptive, timeline, scarcity, retainer, choice, next step.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_pricing_framework</div>
+                    <div class="tool-desc">The 3-option pricing system that converts. Psychology, templates, and discount handling.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_emea_intelligence</div>
+                    <div class="tool-desc">Buyer psychology for UK, Ireland, Spain, Germany, France, Netherlands, Nordics.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_cold_email_template</div>
+                    <div class="tool-desc">5 proven cold email templates. Pattern interrupt, observation, mutual connection, case study, breakup.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_call_script</div>
+                    <div class="tool-desc">Discovery call and cold call frameworks. Minute-by-minute structure with exact scripts.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_buying_signals</div>
+                    <div class="tool-desc">9 buying signals to watch for. Know when to stop pitching and start closing.</div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-name">get_full_playbook</div>
+                    <div class="tool-desc">Complete playbook with all modules. Discovery, objections, follow-up, closing, pricing, EMEA, templates.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example -->
+    <section class="code-section">
+        <div class="container">
+            <div class="code-container">
+                <div class="code-block">
+                    <pre><span class="keyword">// Prospect says "your price is too high"</span>
+
+<span class="keyword">const</span> response = <span class="keyword">await</span> mcp.call(
+  <span class="string">"get_objection_response"</span>,
+  { objection_type: <span class="string">"too_expensive"</span> }
+);
+
+<span class="keyword">// Returns:</span>
+{
+  response: <span class="string">"Fair point — is it the total 
+  investment that feels off, or the 
+  value relative to what you're getting? 
+  I can usually solve one of those."</span>,
+  
+  if_its_the_number: <span class="string">"Offer Option A 
+  with reduced scope"</span>,
+  
+  if_its_the_value: <span class="string">"Restate the specific 
+  ROI they'll see"</span>
+}</pre>
+                </div>
+                <div class="code-text">
+                    <h3>Real objection handling.<br>Not "I understand your concern."</h3>
+                    <p>Every response includes the psychology behind why it works, plus follow-up paths based on what they say next.</p>
+                    <a href="https://github.com/elibierhitz/smb-sales-mcp" class="btn btn-secondary">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Pricing</div>
+                <h2>Start Free, Scale As You Grow</h2>
+                <p class="section-sub">Pay only when you're getting value.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-name">Free</div>
+                    <div class="price-amount">$0</div>
+                    <div class="price-period">forever</div>
+                    <ul class="price-features">
+                        <li>10 requests/month</li>
+                        <li>All 10 tools</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="price-card">
+                    <div class="price-name">Starter</div>
+                    <div class="price-amount">$29</div>
+                    <div class="price-period">/month</div>
+                    <ul class="price-features">
+                        <li>500 requests/month</li>
+                        <li>All 10 tools</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="price-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="price-name">Pro</div>
+                    <div class="price-amount">$97</div>
+                    <div class="price-period">/month</div>
+                    <ul class="price-features">
+                        <li>2,500 requests/month</li>
+                        <li>All 10 tools</li>
+                        <li>Priority support</li>
+                        <li>Custom playbooks</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="price-card">
+                    <div class="price-name">Enterprise</div>
+                    <div class="price-amount">$297</div>
+                    <div class="price-period">/month</div>
+                    <ul class="price-features">
+                        <li>Unlimited requests</li>
+                        <li>All 10 tools</li>
+                        <li>Dedicated support</li>
+                        <li>Custom integrations</li>
+                        <li>SLA guarantee</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials" id="about">
+        <div class="container">
+            <div class="credentials-content">
+                <div>
+                    <div class="section-label">About</div>
+                    <h2>Built by a practitioner,<br>not a theorist.</h2>
+                    <p style="color: var(--gray); margin-top: 16px;">These playbooks come from 10 years of closing enterprise deals, not a sales book. Every script has been tested in real conversations.</p>
+                </div>
+                <ul class="credential-list">
+                    <li>
+                        <span class="credential-check">✓</span>
+                        <div class="credential-text">
+                            268% quota at Criteo
+                            <span>Top 1% of global sales team</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="credential-check">✓</span>
+                        <div class="credential-text">
+                            Deel ($12B company)
+                            <span>Built enterprise sales playbook</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="credential-check">✓</span>
+                        <div class="credential-text">
+                            HBO, Bloomberg, Autodesk
+                            <span>Enterprise deal experience</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="credential-check">✓</span>
+                        <div class="credential-text">
+                            5+ years EMEA sales
+                            <span>UK, Germany, Spain, France, Ireland</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Make your AI agent<br>actually close deals.</h2>
+            <p>Start free. No credit card required.</p>
+            <a href="https://apify.com/elibierhitz/smb-sales-mcp" class="btn btn-primary">Get Started Free →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/elibierhitz/smb-sales-mcp">GitHub</a>
+                <a href="https://linkedin.com/in/elisabethhitz">LinkedIn</a>
+                <a href="mailto:elibierhitz@gmail.com">Contact</a>
+                <a href="https://apify.com/elibierhitz/smb-sales-mcp">Apify</a>
+            </div>
+            <p class="footer-copy">© 2026 Elisabeth Hitz. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

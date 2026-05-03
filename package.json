@@ -1,0 +1,48 @@
+{
+  "name": "smb-sales-intelligence-mcp",
+  "version": "3.0.0",
+  "description": "Enterprise-grade sales playbooks for AI agents. By Elisabeth Hitz - 268% quota at Criteo, Deel ($12B), HBO, Bloomberg.",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "npx ts-node src/main.ts",
+    "test": "echo 'Running MCP server test...' && npm run build && npm start"
+  },
+  "keywords": [
+    "mcp",
+    "sales",
+    "ai-agent",
+    "sdr",
+    "playbook",
+    "b2b",
+    "outbound",
+    "emea",
+    "enterprise",
+    "objection-handling",
+    "discovery",
+    "closing"
+  ],
+  "author": "Elisabeth Hitz <elibierhitz@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elibierhitz/smb-sales-mcp"
+  },
+  "homepage": "https://eli-sales-mcp.netlify.app",
+  "bugs": {
+    "url": "https://github.com/elibierhitz/smb-sales-mcp/issues"
+  }
+}

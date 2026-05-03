@@ -1,0 +1,76 @@
+{
+  "title": "SMB Sales Intelligence MCP Input",
+  "description": "Input schema for the SMB Sales Intelligence MCP Server",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "tool": {
+      "title": "Tool",
+      "type": "string",
+      "description": "The MCP tool to call",
+      "enum": [
+        "get_discovery_script",
+        "get_objection_response",
+        "get_followup_sequence",
+        "get_closing_script",
+        "get_pricing_framework",
+        "get_emea_intelligence",
+        "get_cold_email_template",
+        "get_call_script",
+        "get_buying_signals",
+        "get_full_playbook"
+      ],
+      "editor": "select"
+    },
+    "tone": {
+      "title": "Tone (for discovery scripts)",
+      "type": "string",
+      "description": "The tone of the discovery script",
+      "enum": ["professional", "warm", "ultra_short", "cold_outbound", "inbound_lead"],
+      "editor": "select"
+    },
+    "objection_type": {
+      "title": "Objection Type",
+      "type": "string",
+      "description": "The type of objection to handle",
+      "enum": ["too_expensive", "no_budget", "need_approval", "comparing_options", "bad_timing", "already_have_someone", "send_info", "need_to_think", "too_soon", "ghosting"],
+      "editor": "select"
+    },
+    "sequence_type": {
+      "title": "Sequence Type",
+      "type": "string",
+      "description": "The type of follow-up sequence",
+      "enum": ["post_proposal", "post_call", "cold_outbound", "revival"],
+      "editor": "select"
+    },
+    "style": {
+      "title": "Closing Style",
+      "type": "string",
+      "description": "The closing style to use",
+      "enum": ["standard", "assumptive", "timeline", "scarcity", "retainer", "choice", "next_step"],
+      "editor": "select"
+    },
+    "country": {
+      "title": "EMEA Country",
+      "type": "string",
+      "description": "The European market to get intelligence for",
+      "enum": ["uk", "ireland", "spain", "germany", "france", "netherlands", "nordics"],
+      "editor": "select"
+    },
+    "template_type": {
+      "title": "Cold Email Template Type",
+      "type": "string",
+      "description": "The type of cold email template",
+      "enum": ["pattern_interrupt", "observation", "mutual_connection", "case_study", "breakup"],
+      "editor": "select"
+    },
+    "call_type": {
+      "title": "Call Type",
+      "type": "string",
+      "description": "The type of call script",
+      "enum": ["discovery_call", "cold_call"],
+      "editor": "select"
+    }
+  },
+  "required": ["tool"]
+}
