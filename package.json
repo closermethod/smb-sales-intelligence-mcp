@@ -1,7 +1,7 @@
 {
   "name": "smb-sales-intelligence-mcp",
-  "version": "3.0.0",
-  "description": "Enterprise-grade sales playbooks for AI agents. By Elisabeth Hitz - 268% quota at Criteo, Deel ($12B), HBO, Bloomberg.",
+  "version": "2.1.0",
+  "description": "B2B sales playbook frameworks for AI agents. Built from 10+ years of enterprise sales experience. Disclaimer: structured general-best-practice frameworks, not a substitute for tailored sales coaching.",
   "main": "dist/main.js",
   "type": "module",
   "scripts": {

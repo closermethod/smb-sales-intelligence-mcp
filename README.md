@@ -1,10 +1,12 @@
 # SMB Sales Intelligence MCP Server
 
-**Your AI SDR is guessing. Mine is closing.**
+**Battle-tested B2B sales playbook frameworks for AI agents.**
 
-Battle-tested B2B sales playbooks for AI agents — built from 10 years of enterprise deals at **Criteo (268% quota)**, **Deel ($12B)**, **HBO**, **Bloomberg**, **Autodesk**, and **Levi's**.
+Built from 10+ years of B2B enterprise sales experience across ad-tech, SaaS, media, and global hiring — including a five-year stretch overshooting quota every year at a publicly-listed ad-tech company.
 
 By [Elisabeth Hitz](https://www.linkedin.com/in/elisabethhitz).
+
+> **Disclaimer.** Structured general-best-practice sales frameworks. Not a substitute for tailored sales coaching, legal advice, or domain-specific consulting. Use as a starting layer, not a final source.
 
 ---
 
@@ -137,9 +139,11 @@ First touch with German prospect
 
 Most sales content online is theory. This is from the trenches.
 
-**268% quota means closing more than 2.5× target — consistently.** The scripts in this MCP server aren't best practices from a blog post. They're what actually worked closing deals worth $50K–$500K at HBO, Bloomberg, and Autodesk.
+**Five consecutive years of overshooting quota at a publicly-listed ad-tech company** is the kind of repetition that produces working sales frameworks. The scripts here aren't blog-post best practice — they're structured around real B2B enterprise selling experience layered onto general best-practice methodology (BANT, MEDDIC, SPIN, Sandler).
 
-Your AI agent gets that experience as API calls.
+Your AI agent gets that structured layer as API calls.
+
+> Disclaimer: This MCP returns structured general-best-practice frameworks. Not a substitute for tailored sales coaching, legal advice, or domain-specific consulting. None of the outputs reproduce any former employer's proprietary methodology.
 
 ---
 
@@ -157,7 +161,7 @@ Most AI SDR tools assume EMEA is one market. It isn't.
 | 🇳🇱 Netherlands | Direct, transparent, fast | Overpromising, fluff | Among fastest in EMEA |
 | 🇸🇪 Nordics | Consensus, sustainability framing | Hard sells, after-hours emails | 3–6 wks SMB |
 
-Built from 5+ years of EMEA enterprise sales at Deel, Autodesk, Criteo, Red Points.
+Built from 5+ years of EMEA B2B enterprise sales experience.
 
 ---
 
@@ -165,10 +169,10 @@ Built from 5+ years of EMEA enterprise sales at Deel, Autodesk, Criteo, Red Poin
 
 **Elisabeth Hitz** — Swiss-American B2B sales executive based in Barcelona.
 
-- **268% quota** at Criteo
-- **167% quota** at Deel ($12B valuation)
-- Enterprise deals closed at HBO, Bloomberg, Autodesk, Levi's, Rolling Stone, McCann, VML
-- 5+ years selling EMEA across UK, Germany, Spain, France, Ireland
+- 10+ years of B2B enterprise sales experience across ad-tech, SaaS, media, and global hiring
+- Five consecutive years overshooting quota at a publicly-listed ad-tech company
+- 5+ years EMEA B2B enterprise sales (UK, Germany, Spain, France, Ireland, Netherlands)
+- Closed mid-five to mid-six-figure deals across multiple industries
 - Now building [closermethod.com](https://closermethod.com) and sales tools for the AI agent ecosystem
 
 LinkedIn: [linkedin.com/in/elisabethhitz](https://www.linkedin.com/in/elisabethhitz)

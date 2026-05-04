@@ -2,8 +2,8 @@
   "actorSpecification": 1,
   "name": "smb-sales-intelligence-mcp",
   "title": "SMB Sales Intelligence MCP for AI SDRs",
-  "description": "Battle-tested B2B sales playbooks for AI agents. 10 callable tools: discovery scripts, objection handling, follow-up sequences, 7 closing styles, 3-option pricing framework, EMEA market intelligence (UK/IE/ES/DE/FR/NL/Nordics), cold email templates, call scripts. Built from 10 years of enterprise sales at Criteo (268% quota), Deel ($12B), HBO, Bloomberg.",
-  "version": "3.0.0",
+  "description": "B2B sales playbook frameworks for AI agents. 10 callable tools: discovery scripts, objection handling, follow-up sequences, 7 closing styles, 3-option pricing framework, EMEA market intelligence (UK/IE/ES/DE/FR/NL/Nordics), cold email templates, call scripts. Built from 10+ years of B2B enterprise sales experience across ad-tech, SaaS, and media. Disclaimer: structured general-best-practice frameworks; not a substitute for tailored sales coaching.",
+  "version": "3.1.0",
   "buildTag": "latest",
   "dockerfile": "./Dockerfile",
   "dockerContextDir": ".",
@@ -19,7 +19,7 @@
     "AUTOMATION"
   ],
   "seoTitle": "SMB Sales Intelligence MCP Server | AI SDR Playbooks",
-  "seoDescription": "Enterprise sales playbooks for AI agents. Objection handling, discovery scripts, EMEA intelligence, follow-up sequences. 268% quota at Criteo.",
+  "seoDescription": "Enterprise sales playbook frameworks for AI agents. Objection handling, discovery scripts, EMEA intelligence, follow-up sequences. Built from 10+ years of B2B enterprise sales.",
   "isDeprecated": false,
   "isAnonymouslyRunnable": true,
   "isPublic": true

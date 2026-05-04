@@ -1,12 +1,28 @@
 /**
- * SMB Sales Intelligence MCP Server v2.0
- * By Elisabeth Hitz - 268% quota at Criteo, Deel ($12B), HBO, Bloomberg
- * 
- * Enterprise-grade sales playbooks for AI agents
- * 
+ * SMB Sales Intelligence MCP Server v2.1
+ * By Elisabeth Hitz — built from 10+ years of B2B enterprise sales experience
+ *
+ * 10 sales playbook frameworks for AI agents
+ *
  * Deploy to Apify: apify push
  * Test locally: npx ts-node src/main.ts
+ *
+ * DISCLAIMER: Structured general-best-practice frameworks. Not a substitute for
+ * tailored sales coaching or domain-specific advice.
  */
+
+// =====================================================
+// SERVER METADATA
+// =====================================================
+const MCP_META = {
+  server: "smb-sales-intelligence-mcp",
+  version: "2.1.0",
+  last_verified: "2026-Q2",
+  author: "Elisabeth Hitz",
+  homepage: "https://elisabethhitz-mcp.netlify.app",
+  github: "https://github.com/closermethod/smb-sales-intelligence-mcp",
+  jurisdiction_caveat: "Outputs are structured general-best-practice sales frameworks (BANT, MEDDIC, SPIN, Sandler, Challenger) layered with personal experience patterns. They are NOT a substitute for tailored sales coaching, domain-specific consulting, or any former employer's proprietary methodology — none of which are reproduced here."
+} as const;
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -959,10 +975,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             playbook: "SMB Sales Intelligence v2.0",
             author: "Elisabeth Hitz",
             credentials: [
-              "268% quota at Criteo",
-              "167% quota at Deel ($12B)",
-              "Enterprise deals at HBO, Bloomberg, Autodesk, Levi's, Rolling Stone"
+              "10+ years of B2B enterprise sales experience",
+              "Five consecutive years of overshooting quota at a publicly-listed ad-tech company",
+              "5+ years EMEA enterprise sales (UK, Germany, Spain, France, Ireland, Netherlands)"
             ],
+            _meta: MCP_META,
             modules: {
               discovery: DISCOVERY_SCRIPTS,
               objections: OBJECTION_HANDLERS,
